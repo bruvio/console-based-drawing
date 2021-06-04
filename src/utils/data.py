@@ -1,3 +1,28 @@
+def printEmptyCanvas(width, height):
+    if width < 1 or height < 1:
+        print("\n failed to create canvas \n")
+    else:
+        print("Canvas pattern is: ")
+        for i in range(1, height + 1):
+            for j in range(0, width + 2):
+                if j == 0:
+                    print("|", end="")
+                elif j == width + 1:
+                    print("|", end="")
+                else:
+                    print("*", end="")
+            print()
+
+
+def printCanvas(canvas):
+    height = len(canvas)
+    print("\n")
+    for i in range(0, height):
+        lst = canvas[i]
+        print("".join(map(str, lst)))
+    print("\n")
+
+
 def pointNotInCanvas(canvas, i, j):
 
     width = len(canvas[0]) - 2
@@ -41,7 +66,7 @@ def get_adjacents(i, j, matrix):
 def areHorz(point1, point2):
     x1, y1 = point1
     x2, y2 = point2
-    if y1 == y2:
+    if x1 == x2:
         return True
     return False
 
@@ -49,18 +74,24 @@ def areHorz(point1, point2):
 def areVert(point1, point2):
     x1, y1 = point1
     x2, y2 = point2
-    if x1 == x2:
+    if y1 == y2:
         return True
     return False
 
 
-def drawVerticalLine(canvas, x1, x2, y):
-    for x in range(x1, x2 + 1):
-        canvas[x][y] = "x"
+def drawHorizontalLine(canvas, x, y1, y2):
+
+    if y1 > y2:
+        y1, y2 = y2, y1
+    for y in range(y1, y2):
+        canvas[x][y + 1] = "x"
     return canvas
 
 
-def drawHorizontalLine(canvas, x, y1, y2):
-    for y in range(y1, y2 + 1):
-        canvas[x][y] = "x"
+def drawVerticalLine(canvas, x1, x2, y):
+
+    if x1 > x2:
+        x1, x2 = x2, x1
+    for x in range(x1, x2 + 1):
+        canvas[x][y + 1] = "x"
     return canvas

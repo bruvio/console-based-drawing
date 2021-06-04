@@ -4,32 +4,9 @@ from utils.data import (
     drawHorizontalLine,
     drawVerticalLine,
     pointNotInCanvas,
+    printCanvas,
+    printEmptyCanvas,
 )
-
-
-def printEmptyCanvas(width, height):
-    if width < 1 or height < 1:
-        print("\n failed to create canvas \n")
-    else:
-        print("Canvas pattern is: ")
-        for i in range(1, height + 1):
-            for j in range(0, width + 2):
-                if j == 0:
-                    print("|", end="")
-                elif j == width + 1:
-                    print("|", end="")
-                else:
-                    print("*", end="")
-            print()
-
-
-def printCanvas(canvas):
-    height = len(canvas)
-    print("\n")
-    for i in range(0, height):
-        lst = canvas[i]
-        print("".join(map(str, lst)))
-    print("\n")
 
 
 def createCanvas(width, height):
@@ -67,22 +44,25 @@ def writeCanvas2File(canvas, filename):
 
 
 def drawLine(canvas, x1, y1, x2, y2):
+
     point1 = [x1, y1]
     point2 = [x2, y2]
     if pointNotInCanvas(canvas, x1, y1) or pointNotInCanvas(canvas, x2, y2):
         print("error")
-        return canvas
+        return canvas, False
     elif areVert(point1, point2):
         print("drawing vertical line")
         y = y1
         canvas = drawVerticalLine(canvas, x1, x2, y)
+        return canvas, True
     elif areHorz(point1, point2):
         print("drawing horizontal line")
         x = x1
         canvas = drawHorizontalLine(canvas, x, y1, y2)
+        return canvas, True
     else:
         print("drawing diagonal line not supported")
-    return canvas
+        return canvas, False
 
 
 if __name__ == "__main__":
@@ -95,3 +75,10 @@ if __name__ == "__main__":
     # # print(canvas)
     printCanvas(canvas)
     # writeCanvas2File(canvas, "output.txt")
+    canvas, err = drawLine(canvas, 0, 0, 1, 1)
+    printCanvas(canvas)
+    canvas, err = drawLine(canvas, 0, 0, 0, 3)
+    printCanvas(canvas)
+    canvas, err = drawLine(canvas, 0, 0, 2, 0)
+    printCanvas(canvas)
+    # print(canvas[0:2][0])
