@@ -1,13 +1,13 @@
 from utils.data import (
-    pointNotInCanvas,
     areHorz,
     areVert,
-    drawVerticalLine,
     drawHorizontalLine,
+    drawVerticalLine,
+    pointNotInCanvas,
 )
 
 
-def printCanvas(width, height):
+def printEmptyCanvas(width, height):
     if width < 1 or height < 1:
         print("\n failed to create canvas \n")
     else:
@@ -21,6 +21,15 @@ def printCanvas(width, height):
                 else:
                     print("*", end="")
             print()
+
+
+def printCanvas(canvas):
+    height = len(canvas)
+    print("\n")
+    for i in range(0, height):
+        lst = canvas[i]
+        print("".join(map(str, lst)))
+    print("\n")
 
 
 def createCanvas(width, height):
@@ -79,9 +88,10 @@ def drawLine(canvas, x1, y1, x2, y2):
 if __name__ == "__main__":
     width = 3
     height = 4
-    printCanvas(width, height)
+    printEmptyCanvas(width, height)
     canvas = createCanvas(width, height)
 
-    modifyPixel(canvas, 3, 4, "o")
-    print(canvas)
+    canvas = modifyPixel(canvas, 3, 3, "o")
+    # # print(canvas)
+    printCanvas(canvas)
     # writeCanvas2File(canvas, "output.txt")
