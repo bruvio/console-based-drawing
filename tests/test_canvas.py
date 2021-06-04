@@ -1,5 +1,5 @@
 import pytest
-from canvas import createCanvas, modifyPixel, writeCanvas2File
+from canvas import createCanvas, modifyPixel, writeCanvas2File, drawRectangle
 
 from utils.data import (
     areVert,
@@ -90,20 +90,18 @@ def test_areInCanvas(canvas, x, y):
 
 @pytest.mark.parametrize("point1", [[0, 0], [0, 1], [0, 2]])
 @pytest.mark.parametrize("point2", [[0, 2], [0, 1], [0, 3]])
-def test_writeHorzLine(canvas, point1, point2):
+def test_drawHorzLine(canvas, point1, point2):
     x1, y1 = point1
     x2, y2 = point2
     if areHorz(point1, point2):
         x = x1
         canvas_line = drawHorizontalLine(canvas, x, y1, y2)
         assert all([a == "x" for a in canvas_line[x][y1 + 1 : y2 + 1]])
-    else:
-        pytest.xfail("combination of points not horizontal or illegal")
 
 
 @pytest.mark.parametrize("point1", [[0, 0], [1, 0], [2, 0]])
 @pytest.mark.parametrize("point2", [[2, 0], [1, 0], [3, 0]])
-def test_writeVertLine(canvas, point1, point2):
+def test_drawVertLine(canvas, point1, point2):
     x1, y1 = point1
     x2, y2 = point2
     if areVert(point1, point2):
@@ -113,5 +111,24 @@ def test_writeVertLine(canvas, point1, point2):
         # transpose list of list (nested list) and get column as row
         selected_column = list(zip(*canvas_line))[y + 1]
         assert all([a == "x" for a in selected_column[x1 : x2 + 1]])
+
+
+@pytest.mark.parametrize("point1", [[0, 0], [1, 0], [2, 0]])
+@pytest.mark.parametrize("point2", [[1, 0], [2, 2], [3, 3]])
+def test_drawRectangle(canvas, point1, point2):
+    x1, y1 = point1
+    x2, y2 = point2
+
+    canvas_rect = drawRectangle(canvas, x1, y1, x2, y2)
+
+    selected_column = list(zip(*canvas_rect))[y2 + 1]
+
+    if len(canvas_rect[x1][y1 + 1 : y2 + 1]) == 0:
+        assert all([a == "x" for a in selected_column[x1 : x2 + 1]])
+    elif len(selected_column) == 0:
+        assert all([a == "x" for a in selected_column[x1 : x2 + 1]])
     else:
-        pytest.xfail("combination of points not vertical or illegal")
+
+        assert (all([a == "x" for a in canvas_rect[x1][y1 + 1 : y2 + 1]])) and (
+            all([a == "x" for a in selected_column[x1 : x2 + 1]])
+        )
