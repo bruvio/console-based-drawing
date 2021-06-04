@@ -3,19 +3,19 @@ from canvas import createCanvas, writeCanvas2File, fillArea, drawRectangle, draw
 # Import the modules needed to run the script.
 import sys
 import os
-
+import pdb
 from utils.data import printCanvas
 
 # Main definition - constants
 menu_actions = {}
-canvas = []
+
 # =======================
 #     MENUS FUNCTIONS
 # =======================
 # Main menu
 
 
-def main_menu():
+def main_menu(canvas):
 
     os.system("clear")
     print("Welcome,\n")
@@ -25,38 +25,43 @@ def main_menu():
     # print("2. No")
     print("\nq. Quit")
     choice = input(" >>  ")
-    exec_menu(choice)
-
+    exec_menu(choice, canvas)
     return
 
 
 # Execute menu
-def exec_menu(choice):
+def exec_menu(choice, canvas):
     os.system("clear")
     ch = choice.lower()
     if ch == "":
         menu_actions["main_menu"]()
     else:
-        try:
-            menu_actions[ch]()
-        except KeyError:
-            print("Invalid selection, please try again.\n")
-            menu_actions["main_menu"]()
-    return
 
-
-def exec_drawmenu(choice):
-    os.system("clear")
-    ch = choice.lower()
-    if ch == "":
-        menu_actions["main_menu"]()
-    else:
-        try:
-            exec_draw[ch]()
-        except KeyError:
-            print("Invalid selection, please try again.\n")
-            menu_actions["main_menu"]()
-    return
+        if int(choice) == 1:
+            try:
+                menu1()
+            except Exception:
+                print("error creating canvas")
+        if int(choice) == 2:
+            try:
+                menu2(canvas)
+            except Exception:
+                print("error drawing line in canvas")
+        if int(choice) == 3:
+            try:
+                menu3(canvas)
+            except Exception:
+                print("error creating rectangle in canvas")
+        if int(choice) == 4:
+            try:
+                menu4(canvas)
+            except Exception:
+                print("error filling canvas")
+        if int(choice) == 5:
+            try:
+                menu5(canvas)
+            except Exception:
+                print("error saving canvas")
 
 
 def draw_menu(canvas):
@@ -68,11 +73,12 @@ def draw_menu(canvas):
     print("\n")
     print("1. Draw a new canvas")
     print("2. Draw a line")
-    print("3. Fill the canvas")
-    print("4. Save the canvas to file")
+    print("3. Draw a rectangle")
+    print("4. Fill the canvas")
+    print("5. Save the canvas to file")
     print("\nq. Quit")
     choice = input(" >>  ")
-    exec_drawmenu(choice)
+    exec_menu(choice, canvas)
 
 
 # Menu 1
@@ -98,7 +104,7 @@ def menu1():
             print("Invalid selection, please try again.\n")
             menu_actions[1]()
 
-    return
+    return canvas
 
 
 def menu2(canvas):
@@ -118,15 +124,17 @@ def menu2(canvas):
                     y1 = int(x[2])
                     x2 = int(x[3])
                     y2 = int(x[4])
+
                     canvas = drawLine(canvas, x1, y1, x2, y2)
+
                     printCanvas(canvas)
-                    draw_menu()
+                    draw_menu(canvas)
                 except Exception:
                     print("Invalid selection, please try again.\n")
-                    draw_menu()
+                    draw_menu(canvas)
         except KeyError:
             print("Invalid selection, please try again.\n")
-            draw_menu()
+            draw_menu(canvas)
 
     return canvas
 
@@ -150,13 +158,13 @@ def menu3(canvas):
                     y2 = int(x[4])
                     canvas = drawRectangle(canvas, x1, y1, x2, y2)
                     printCanvas(canvas)
-                    draw_menu()
+                    draw_menu(canvas)
                 except Exception:
                     print("Invalid selection, please try again.\n")
-                    draw_menu()
+                    draw_menu(canvas)
         except KeyError:
             print("Invalid selection, please try again.\n")
-            draw_menu()
+            draw_menu(canvas)
 
     return canvas
 
@@ -164,6 +172,9 @@ def menu3(canvas):
 def menu4(canvas):
     print("\n")
     x = []
+    # import pdb
+
+    # pdb.set_trace()
     while len(x) != 4:
         try:
             x = list(
@@ -182,13 +193,13 @@ def menu4(canvas):
 
                     canvas = fillArea(canvas, x, y, colour)
                     printCanvas(canvas)
-                    draw_menu()
+                    draw_menu(canvas)
                 except Exception:
                     print("Invalid selection, please try again.\n")
-                    draw_menu()
+                    draw_menu(canvas)
         except KeyError:
             print("Invalid selection, please try again.\n")
-            draw_menu()
+            draw_menu(canvas)
 
     return canvas
 
@@ -196,6 +207,9 @@ def menu4(canvas):
 def menu5(canvas):
     print("\n")
     x = []
+    # import pdb
+
+    # pdb.set_trace()
     while len(x) != 2:
         try:
             x = list(
@@ -211,13 +225,13 @@ def menu5(canvas):
                     filename = x[1]
 
                     canvas = writeCanvas2File(canvas, filename)
-                    draw_menu()
+                    draw_menu(canvas)
                 except Exception:
                     print("Invalid selection, please try again.\n")
-                    draw_menu()
+                    draw_menu(canvas)
         except KeyError:
             print("Invalid selection, please try again.\n")
-            draw_menu()
+            draw_menu(canvas)
 
     return canvas
 
@@ -262,4 +276,5 @@ exec_draw = {
 # Main Program
 if __name__ == "__main__":
     # Launch main menu
-    main_menu()
+    canvas = None
+    main_menu(canvas)
