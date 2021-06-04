@@ -49,20 +49,32 @@ def drawLine(canvas, x1, y1, x2, y2):
     point2 = [x2, y2]
     if pointNotInCanvas(canvas, x1, y1) or pointNotInCanvas(canvas, x2, y2):
         print("error")
-        return canvas, False
+        return canvas
     elif areVert(point1, point2):
         print("drawing vertical line")
         y = y1
         canvas = drawVerticalLine(canvas, x1, x2, y)
-        return canvas, True
+        return canvas
     elif areHorz(point1, point2):
         print("drawing horizontal line")
         x = x1
         canvas = drawHorizontalLine(canvas, x, y1, y2)
-        return canvas, True
+        return canvas
     else:
         print("drawing diagonal line not supported")
-        return canvas, False
+        return canvas
+
+
+def drawRectangle(canvas, x1, y1, x2, y2):
+    # point1 = [x1, y1]
+    # point2 = [x2, y2]
+    if pointNotInCanvas(canvas, x1, y1) or pointNotInCanvas(canvas, x2, y2):
+        print("error")
+        return canvas
+    else:
+        canvas = drawHorizontalLine(canvas, x1, y1, y2)
+        canvas = drawVerticalLine(canvas, x1, x2, y2)
+        return canvas
 
 
 if __name__ == "__main__":
@@ -75,10 +87,12 @@ if __name__ == "__main__":
     # # print(canvas)
     printCanvas(canvas)
     # writeCanvas2File(canvas, "output.txt")
-    canvas, err = drawLine(canvas, 0, 0, 1, 1)
-    printCanvas(canvas)
+    # canvas = drawLine(canvas, 0, 0, 1, 1)
+    # printCanvas(canvas)
     # canvas, err = drawLine(canvas, 0, 0, 0, 3)
     # printCanvas(canvas)
-    canvas, err = drawLine(canvas, 2, 0, 2, 0)
-    printCanvas(canvas)
+    # canvas = drawLine(canvas, 2, 0, 2, 0)
+    # printCanvas(canvas)
     # print(canvas[0:2][0])
+    canvas = drawRectangle(canvas, 0, 0, 2, 0)
+    printCanvas(canvas)
