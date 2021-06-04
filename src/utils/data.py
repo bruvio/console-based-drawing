@@ -45,7 +45,7 @@ def get_surroundings(i, j, matrix):
         [list]: [list of adjacent indexes]
     """
 
-    m = len(matrix[0])
+    m = len(matrix[0]) - 1
     n = len(matrix)
 
     surrounding_indexes = []
@@ -156,4 +156,7 @@ def fill_adjacent_list(get_surroundings, matrix, colour):
 
     if get_surroundings:
         for o in range(0, len(get_surroundings)):
-            matrix[get_surroundings[o][0]][get_surroundings[o][1] + 1] = colour
+            if (matrix[get_surroundings[o][0]][get_surroundings[o][1] + 1] != "|") or (
+                matrix[get_surroundings[o][0]][get_surroundings[o][1] + 1] != "x"
+            ):
+                matrix[get_surroundings[o][0]][get_surroundings[o][1] + 1] = colour

@@ -82,6 +82,16 @@ def drawRectangle(canvas, x1, y1, x2, y2):
 def fillArea(canvas, x, y, colour):
     adjacent_indexes = get_surroundings(x, y, canvas)
     fill_adjacent_list(adjacent_indexes, canvas, colour)
+    explored = []
+    while len(adjacent_indexes) > 0:
+        adj = adjacent_indexes.pop()
+        explored.append(adj)
+        xx, yy = adj
+        adjacent_indexes += get_surroundings(xx, yy, canvas)
+        adjacent_indexes = [x for x in adjacent_indexes if x not in explored]
+        adjacent_indexes = list(set(adjacent_indexes))
+        fill_adjacent_list(adjacent_indexes, canvas, colour)
+
     return canvas
 
 
@@ -108,6 +118,6 @@ if __name__ == "__main__":
     # # canvas = drawRectangle(canvas, 0, 0, 2, 0)
     # # printCanvas(canvas)
 
-    # fillArea(canvas, 1, 2, "p")
-    # # print(canvas)
-    # printCanvas(canvas)
+    fillArea(canvas, 1, 2, "p")
+    print(canvas)
+    printCanvas(canvas)
