@@ -3,6 +3,8 @@ from utils.data import (
     areVert,
     drawHorizontalLine,
     drawVerticalLine,
+    fill_adjacent_list,
+    get_surroundings,
     pointNotInCanvas,
     printCanvas,
     printEmptyCanvas,
@@ -77,6 +79,12 @@ def drawRectangle(canvas, x1, y1, x2, y2):
         return canvas
 
 
+def fillArea(canvas, x, y, colour):
+    pass
+
+    # adjacent_indexes = get_adjacents(x, y, canvas)
+
+
 if __name__ == "__main__":
     width = 3
     height = 4
@@ -85,7 +93,7 @@ if __name__ == "__main__":
 
     canvas = modifyPixel(canvas, 3, 3, "o")
     # # print(canvas)
-    printCanvas(canvas)
+    # printCanvas(canvas)
     # writeCanvas2File(canvas, "output.txt")
     # canvas = drawLine(canvas, 0, 0, 1, 1)
     # printCanvas(canvas)
@@ -94,5 +102,9 @@ if __name__ == "__main__":
     # canvas = drawLine(canvas, 2, 0, 2, 0)
     # printCanvas(canvas)
     # print(canvas[0:2][0])
-    canvas = drawRectangle(canvas, 0, 0, 2, 0)
+    # canvas = drawRectangle(canvas, 0, 0, 2, 0)
+    # printCanvas(canvas)
+    adjacent_indexes = get_surroundings(0, 0, canvas)
+    print(adjacent_indexes)
+    fill_adjacent_list(adjacent_indexes, canvas, "p")
     printCanvas(canvas)
