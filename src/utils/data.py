@@ -83,7 +83,7 @@ def drawHorizontalLine(canvas, x, y1, y2):
 
     if y1 > y2:
         y1, y2 = y2, y1
-    for y in range(y1, y2):
+    for y in range(y1, y2 + 1):
         canvas[x][y + 1] = "x"
     return canvas
 
