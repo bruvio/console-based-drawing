@@ -3,7 +3,6 @@ from canvas import createCanvas, writeCanvas2File, fillArea, drawRectangle, draw
 # Import the modules needed to run the script.
 import sys
 import os
-import pdb
 from utils.data import printCanvas
 
 # Main definition - constants
@@ -35,6 +34,8 @@ def exec_menu(choice, canvas):
     ch = choice.lower()
     if ch == "":
         menu_actions["main_menu"]()
+    if ch == "q":
+        menu_actions["q"]()
     else:
 
         if int(choice) == 1:
@@ -172,7 +173,7 @@ def menu3(canvas):
 def menu4(canvas):
     print("\n")
     x = []
-    # import pdb
+    import pdb
 
     # pdb.set_trace()
     while len(x) != 4:
@@ -185,13 +186,15 @@ def menu4(canvas):
                     ).split(),
                 )
             )
-            if (type(x[0]) == str) and (x[0] == "L"):
+            pdb.set_trace()
+            if (type(x[0]) == str) and (x[0] == "B"):
                 try:
                     x = int(x[1])
                     y = int(x[2])
                     colour = x[3]
 
                     canvas = fillArea(canvas, x, y, colour)
+
                     printCanvas(canvas)
                     draw_menu(canvas)
                 except Exception:
@@ -258,13 +261,6 @@ menu_actions = {
     "3": menu3,
     "4": menu4,
     "5": menu5,
-    "q": exit,
-}
-exec_draw = {
-    "main_menu": main_menu,
-    "1": menu1,
-    "2": exit,
-    "9": back,
     "q": exit,
 }
 
