@@ -30,7 +30,7 @@ def createCanvas(width, height):
                 elif j == len(canvas[1]) - 1:
                     canvas[i][j] = "|"
                 else:
-                    canvas[i][j] = "*"
+                    canvas[i][j] = " "
         return canvas
 
 
@@ -39,15 +39,24 @@ def modifyPixel(canvas, i, j, character):
         print("error")
         return canvas
     else:
-        canvas[i][j + 1] = character
+        canvas[i][j] = character
     return canvas
 
 
+def writeCanvas2File(canvas, filename):
+    with open(filename, "w") as myfile:
+        for i in range(0, len(canvas)):
+            lst = canvas[i]
+            myfile.write("".join(map(str, lst)) + "\n")
+    myfile.close()
+
+
 if __name__ == "__main__":
-    width = 20
+    width = 3
     height = 4
     printCanvas(width, height)
     canvas = createCanvas(width, height)
 
-    modifyPixel(canvas, 3, 20, "o")
+    modifyPixel(canvas, 3, 4, "o")
     print(canvas)
+    # writeCanvas2File(canvas, "output.txt")
