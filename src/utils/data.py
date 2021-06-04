@@ -61,21 +61,18 @@ def get_surroundings(i, j, matrix):
     if j > 0:
         surrounding_indexes.append((i, j - 1))
 
-    if j + 1 < n:
+    if j + 1 < n - 1:
         surrounding_indexes.append((i, j + 1))
 
-    # if i - 1 > 0 and j - 1 > 0:
-    #     surrounding_indexes.append((i - 1, j - 1))
-    # if i - 1 > 0 and j + 1 < n - 1:
-    #     surrounding_indexes.append((i - 1, j + 1))
-    # if i + 1 < m and j - 1 > 0:
-    #     surrounding_indexes.append((i + 1, j - 1))
+    if i - 1 >= 0 and j - 1 >= 0:
+        surrounding_indexes.append((i - 1, j - 1))
+    if i - 1 >= 0 and j + 1 < n - 1:
+        surrounding_indexes.append((i - 1, j + 1))
+    if i + 1 < m and j - 1 >= 0:
+        surrounding_indexes.append((i + 1, j - 1))
     if i + 1 < m and j + 1 < n - 1:
         surrounding_indexes.append((i + 1, j + 1))
-    print(surrounding_indexes)
-    # import pdb
 
-    # pdb.set_trace()
     return surrounding_indexes
 
 
