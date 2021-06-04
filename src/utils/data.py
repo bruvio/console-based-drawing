@@ -36,3 +36,31 @@ def get_adjacents(i, j, matrix):
     if j + 1 < n:
         adjacent_indexes.append((i, j + 1))
     return adjacent_indexes
+
+
+def areHorz(point1, point2):
+    x1, y1 = point1
+    x2, y2 = point2
+    if y1 == y2:
+        return True
+    return False
+
+
+def areVert(point1, point2):
+    x1, y1 = point1
+    x2, y2 = point2
+    if x1 == x2:
+        return True
+    return False
+
+
+def drawVerticalLine(canvas, x1, x2, y):
+    for x in range(x1, x2 + 1):
+        canvas[x][y] = "x"
+    return canvas
+
+
+def drawHorizontalLine(canvas, x, y1, y2):
+    for y in range(y1, y2 + 1):
+        canvas[x][y] = "x"
+    return canvas

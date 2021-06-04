@@ -1,4 +1,10 @@
-from utils.data import pointNotInCanvas
+from utils.data import (
+    pointNotInCanvas,
+    areHorz,
+    areVert,
+    drawVerticalLine,
+    drawHorizontalLine,
+)
 
 
 def printCanvas(width, height):
@@ -49,6 +55,25 @@ def writeCanvas2File(canvas, filename):
             lst = canvas[i]
             myfile.write("".join(map(str, lst)) + "\n")
     myfile.close()
+
+
+def drawLine(canvas, x1, y1, x2, y2):
+    point1 = [x1, y1]
+    point2 = [x2, y2]
+    if pointNotInCanvas(canvas, x1, y1) or pointNotInCanvas(canvas, x2, y2):
+        print("error")
+        return canvas
+    elif areVert(point1, point2):
+        print("drawing vertical line")
+        y = y1
+        canvas = drawVerticalLine(canvas, x1, x2, y)
+    elif areHorz(point1, point2):
+        print("drawing horizontal line")
+        x = x1
+        canvas = drawHorizontalLine(canvas, x, y1, y2)
+    else:
+        print("drawing diagonal line not supported")
+    return canvas
 
 
 if __name__ == "__main__":
