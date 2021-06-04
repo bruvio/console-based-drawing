@@ -80,18 +80,18 @@ def drawRectangle(canvas, x1, y1, x2, y2):
 
 
 def fillArea(canvas, x, y, colour):
-    pass
-
-    # adjacent_indexes = get_adjacents(x, y, canvas)
+    adjacent_indexes = get_surroundings(x, y, canvas)
+    fill_adjacent_list(adjacent_indexes, canvas, colour)
+    return canvas
 
 
 if __name__ == "__main__":
-    width = 3
+    width = 20
     height = 4
     printEmptyCanvas(width, height)
     canvas = createCanvas(width, height)
 
-    canvas = modifyPixel(canvas, 3, 3, "o")
+    # canvas = modifyPixel(canvas, 3, 3, "o")
     # # print(canvas)
     # printCanvas(canvas)
     # writeCanvas2File(canvas, "output.txt")
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # print(canvas[0:2][0])
     # canvas = drawRectangle(canvas, 0, 0, 2, 0)
     # printCanvas(canvas)
-    adjacent_indexes = get_surroundings(0, 0, canvas)
-    print(adjacent_indexes)
-    fill_adjacent_list(adjacent_indexes, canvas, "p")
+
+    fillArea(canvas, 0, 0, "p")
+    print(canvas)
     printCanvas(canvas)

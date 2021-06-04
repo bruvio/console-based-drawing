@@ -44,54 +44,35 @@ def get_surroundings(i, j, matrix):
     Returns:
         [list]: [list of adjacent indexes]
     """
+
     m = len(matrix[0]) - 2
     n = len(matrix)
-    # neighbors = lambda x, y: [
-    #     (x2, y2)
-    #     for x2 in range(x - 1, x + 2)
-    #     for y2 in range(y - 1, y + 2)
-    #     if (
-    #         -1 < x <= m
-    #         and -1 < y <= n
-    #         and (x != x2 or y != y2)
-    #         and (0 <= x2 <= m)
-    #         and (0 <= y2 <= n)
-    #     )
-    # ]
 
-    # return neighbors(m, n)
-    # return [
-    #     (x2, y2)
-    #     for x2 in range(max(0, x - 1), min(width, x + 2))
-    #     for y2 in range(max(0, y - 1), min(height, y + 2))
-    #     if (x2, y2) != (x, y)
-    # ]
-
-    adjacent_indexes = []
+    surrounding_indexes = []
     if i > m or j > n or i < 0 or j < 0:
-        return adjacent_indexes
+        return surrounding_indexes
     if i > 0:
-        adjacent_indexes.append((i - 1, j))
+        surrounding_indexes.append((i - 1, j))
 
     if i + 1 < m:
-        adjacent_indexes.append((i + 1, j))
+        surrounding_indexes.append((i + 1, j))
 
     if j > 0:
-        adjacent_indexes.append((i, j - 1))
+        surrounding_indexes.append((i, j - 1))
 
     if j + 1 < n:
-        adjacent_indexes.append((i, j + 1))
+        surrounding_indexes.append((i, j + 1))
 
     if i - 1 > 0 and j - 1 > 0:
-        adjacent_indexes.append((i - 1, j - 1))
+        surrounding_indexes.append((i - 1, j - 1))
     if i - 1 > 0 and j + 1 < n:
-        adjacent_indexes.append((i - 1, j + 1))
+        surrounding_indexes.append((i - 1, j + 1))
     if i + 1 < m and j - 1 > 0:
-        adjacent_indexes.append((i + 1, j - 1))
+        surrounding_indexes.append((i + 1, j - 1))
     if i + 1 < m and j + 1 < n:
-        adjacent_indexes.append((i + 1, j + 1))
+        surrounding_indexes.append((i + 1, j + 1))
 
-    return adjacent_indexes
+    return surrounding_indexes
 
 
 def get_adjacents(i, j, matrix):

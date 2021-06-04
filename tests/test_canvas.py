@@ -1,5 +1,5 @@
 import pytest
-from canvas import createCanvas, modifyPixel, writeCanvas2File, drawRectangle
+from canvas import createCanvas, modifyPixel, writeCanvas2File, drawRectangle, fillArea
 
 from utils.data import (
     areVert,
@@ -132,3 +132,24 @@ def test_drawRectangle(canvas, point1, point2):
         assert (all([a == "x" for a in canvas_rect[x1][y1 + 1 : y2 + 1]])) and (
             all([a == "x" for a in selected_column[x1 : x2 + 1]])
         )
+
+
+@pytest.mark.parametrize(
+    "point, output",
+    [
+        (
+            [0, 0],
+            [
+                ["|", " ", "p", " ", "|"],
+                ["|", "p", "p", " ", "|"],
+                ["|", " ", " ", " ", "|"],
+                ["|", " ", " ", " ", "|"],
+            ],
+        )
+    ],
+)
+def test_fillArea(point, output):
+    x1, y1 = point
+    can = createCanvas(3, 4)
+    filled = fillArea(can, x1, y1, "p")
+    assert filled == output
