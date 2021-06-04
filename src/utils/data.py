@@ -45,12 +45,13 @@ def get_surroundings(i, j, matrix):
         [list]: [list of adjacent indexes]
     """
 
-    m = len(matrix[0]) - 2
+    m = len(matrix[0])
     n = len(matrix)
 
     surrounding_indexes = []
     if i > m or j > n or i < 0 or j < 0:
         return surrounding_indexes
+
     if i > 0:
         surrounding_indexes.append((i - 1, j))
 
@@ -63,15 +64,18 @@ def get_surroundings(i, j, matrix):
     if j + 1 < n:
         surrounding_indexes.append((i, j + 1))
 
-    if i - 1 > 0 and j - 1 > 0:
-        surrounding_indexes.append((i - 1, j - 1))
-    if i - 1 > 0 and j + 1 < n:
-        surrounding_indexes.append((i - 1, j + 1))
-    if i + 1 < m and j - 1 > 0:
-        surrounding_indexes.append((i + 1, j - 1))
-    if i + 1 < m and j + 1 < n:
+    # if i - 1 > 0 and j - 1 > 0:
+    #     surrounding_indexes.append((i - 1, j - 1))
+    # if i - 1 > 0 and j + 1 < n - 1:
+    #     surrounding_indexes.append((i - 1, j + 1))
+    # if i + 1 < m and j - 1 > 0:
+    #     surrounding_indexes.append((i + 1, j - 1))
+    if i + 1 < m and j + 1 < n - 1:
         surrounding_indexes.append((i + 1, j + 1))
+    print(surrounding_indexes)
+    # import pdb
 
+    # pdb.set_trace()
     return surrounding_indexes
 
 

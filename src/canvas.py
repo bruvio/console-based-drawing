@@ -33,7 +33,7 @@ def modifyPixel(canvas, i, j, character):
         print("error")
         return canvas
     else:
-        canvas[i][j] = character
+        canvas[i][j + 1] = character
     return canvas
 
 
@@ -86,14 +86,17 @@ def fillArea(canvas, x, y, colour):
 
 
 if __name__ == "__main__":
-    width = 20
+    width = 3
     height = 4
     printEmptyCanvas(width, height)
     canvas = createCanvas(width, height)
 
-    # canvas = modifyPixel(canvas, 3, 3, "o")
+    # canvas = modifyPixel(canvas, 0, 0, "o")
+    canvas = modifyPixel(canvas, 1, 0, "p")
+    canvas = modifyPixel(canvas, 1, 1, "t")
+    canvas = modifyPixel(canvas, 0, 1, "z")
     # # print(canvas)
-    # printCanvas(canvas)
+    printCanvas(canvas)
     # writeCanvas2File(canvas, "output.txt")
     # canvas = drawLine(canvas, 0, 0, 1, 1)
     # printCanvas(canvas)
@@ -105,6 +108,6 @@ if __name__ == "__main__":
     # canvas = drawRectangle(canvas, 0, 0, 2, 0)
     # printCanvas(canvas)
 
-    fillArea(canvas, 0, 0, "p")
-    print(canvas)
+    fillArea(canvas, 0, 1, "p")
+    # print(canvas)
     printCanvas(canvas)

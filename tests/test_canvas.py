@@ -8,6 +8,7 @@ from utils.data import (
     drawHorizontalLine,
     drawVerticalLine,
     printCanvas,
+    get_surroundings,
 )
 
 
@@ -132,6 +133,14 @@ def test_drawRectangle(canvas, point1, point2):
         assert (all([a == "x" for a in canvas_rect[x1][y1 + 1 : y2 + 1]])) and (
             all([a == "x" for a in selected_column[x1 : x2 + 1]])
         )
+
+
+@pytest.mark.parametrize("point, output", [([0, 0], [(1, 0), (0, 1), (1, 1)])])
+def test_getSurroundings(point, output):
+    x1, y1 = point
+    can = createCanvas(3, 4)
+    adjacent_indexes = get_surroundings(x1, y1, can)
+    assert adjacent_indexes == output
 
 
 @pytest.mark.parametrize(
