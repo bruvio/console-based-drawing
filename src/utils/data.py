@@ -155,7 +155,9 @@ def fill_adjacent_list(get_surroundings, matrix, colour):
     """
 
     if get_surroundings:
+
         for o in range(0, len(get_surroundings)):
+
             if (matrix[get_surroundings[o][0]][get_surroundings[o][1] + 1] != "|") or (
                 matrix[get_surroundings[o][0]][get_surroundings[o][1] + 1] != "x"
             ):

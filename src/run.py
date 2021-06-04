@@ -189,11 +189,11 @@ def menu4(canvas):
             pdb.set_trace()
             if (type(x[0]) == str) and (x[0] == "B"):
                 try:
-                    x = int(x[1])
-                    y = int(x[2])
+                    xx = int(x[1])
+                    yy = int(x[2])
                     colour = x[3]
 
-                    canvas = fillArea(canvas, x, y, colour)
+                    canvas = fillArea(canvas, xx, yy, colour)
 
                     printCanvas(canvas)
                     draw_menu(canvas)

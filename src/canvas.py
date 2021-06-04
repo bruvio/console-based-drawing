@@ -118,6 +118,6 @@ if __name__ == "__main__":
     # # canvas = drawRectangle(canvas, 0, 0, 2, 0)
     # # printCanvas(canvas)
 
-    fillArea(canvas, 1, 2, "p")
+    fillArea(canvas, 0, 0, "p")
     print(canvas)
     printCanvas(canvas)
