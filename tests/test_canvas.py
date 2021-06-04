@@ -37,7 +37,7 @@ def test_badSizeCanvas(x, y):
 def test_modifyPixel1(x, y, point):
     can = createCanvas(x, y)
     can = modifyPixel(can, point[0], point[1], "f")
-    assert can[point[0]][point[1]] == "f"
+    assert can[point[0]][point[1] + 1] == "f"
 
 
 @pytest.mark.parametrize("x", [3, 4, 5])
@@ -47,7 +47,7 @@ def test_modifyPixel1(x, y, point):
 def test_modifyPixel2(x, y, point):
     can = createCanvas(x, y)
     can = modifyPixel(can, point[0], point[1], "f")
-    assert can[point[0]][point[1]] == "f"
+    assert can[point[0]][point[1] + 1] == "f"
 
 
 @pytest.mark.parametrize("x", [3, 4, 5])
