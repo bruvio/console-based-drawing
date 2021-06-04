@@ -13,3 +13,11 @@
 7. the interactive menu is build on the function input to gather parameters from terminal by the user
 
 8. I used some dictionaries to be able to create some sort of menu with different "windows" to facilitate the user
+
+---
+
+I choose to use visual studio as my favourite IDE and before starting working I setup the project folder (I have a repo that I use for that with inside a bash script, check my github for reference)
+
+There are no requirements (as per instructions), only dev requirements
+
+I use pre-commit hooks to automatically format and lynt the code
